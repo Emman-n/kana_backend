@@ -1,24 +1,22 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
- 
+import fs from "fs";
 
- 
-// const path = require('path');
 
- 
+
 const app = express();
 app.use(express.json());
-app.use(cors());
 
- 
+const allowedOrigins = JSON.parse(fs.readFileSync('./config/allowedOrigins.json')).allowedOrigins;
 
 
-app.use(express.static(path.join(__dirname +  "/public")))
+app.use(cors({
+  origin: allowedOrigins,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
-const PORT = process.env.PORT || 5000
-
-app.listen(PORT)
 
 
 const db = mysql.createConnection({
@@ -27,6 +25,19 @@ const db = mysql.createConnection({
   password: "password",
   database: "test",
 });
+
+
+
+const port = 3307;
+app.listen(port, () => {
+  console.log(`connected to back ${port}`);
+});
+
+
+// app.listen(3307, () => {
+//   console.log("connected to back");
+// });
+
 
 app.get("/", (req, res) => {
   res.json("hello this is the backend :O");
@@ -173,6 +184,9 @@ app.get("/kata/:id", (req, res) => {
   findResponseKata(req, res);
 });
 
+
+
+
 //---------------------------------------
 app.get("/hira", (req, res) => {
   const q = `SELECT * FROM hira `;
@@ -272,6 +286,5 @@ app.put("/books/:id", (req, res) => {
   });
 });
 
-app.listen(3307, () => {
-  console.log("connected to back");
-});
+
+ 
