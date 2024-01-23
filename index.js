@@ -1,43 +1,14 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
-<<<<<<< HEAD
- 
 
- 
-const path = require('path');
 
- 
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
  
-
-
-app.use(express.static(path.join(__dirname +  "/public")))
-
-const PORT = process.env.PORT || 5000
-
-app.listen(PORT)
-=======
-import fs from "fs";
-
-
-
-const app = express();
-app.use(express.json());
-
-const allowedOrigins = JSON.parse(fs.readFileSync('./config/allowedOrigins.json')).allowedOrigins;
-
-
-app.use(cors({
-  origin: allowedOrigins,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
-
->>>>>>> backend
 
 
 const db = mysql.createConnection({
@@ -47,22 +18,6 @@ const db = mysql.createConnection({
   database: "test",
 });
 
-<<<<<<< HEAD
-=======
-
-
-const port = 3307;
-app.listen(port, () => {
-  console.log(`connected to back ${port}`);
-});
-
-
-// app.listen(3307, () => {
-//   console.log("connected to back");
-// });
-
-
->>>>>>> backend
 app.get("/", (req, res) => {
   res.json("hello this is the backend :O");
 });
@@ -208,12 +163,9 @@ app.get("/kata/:id", (req, res) => {
   findResponseKata(req, res);
 });
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> backend
 //---------------------------------------
 app.get("/hira", (req, res) => {
   const q = `SELECT * FROM hira `;
@@ -313,11 +265,6 @@ app.put("/books/:id", (req, res) => {
   });
 });
 
-<<<<<<< HEAD
 app.listen(3307, () => {
   console.log("connected to back");
 });
-=======
-
- 
->>>>>>> backend
