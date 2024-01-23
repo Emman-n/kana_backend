@@ -1,8 +1,6 @@
 {
     "allowedOrigins": [
       "http://localhost:3000",
-      "https://kana-6nmp.onrender.com",
-      
-      "http://anotherdomain.com"
+      "https://kana-wpqz.onrender.com"
     ]
   }
