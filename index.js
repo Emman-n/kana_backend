@@ -1,22 +1,24 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
-
-
+import config from './config.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Access configuration variables
+console.log('Database Host:', config.database.host);
+console.log('PORt:', config.database.port);
  
-
-
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "test",
+  port: config.database.port,
+  host: config.database.host,
+  user: config.database.username,
+  password: config.database.password,
+  database: config.database.databaseName,
 });
+
 
 app.get("/", (req, res) => {
   res.json("hello this is the backend :O");
@@ -265,6 +267,11 @@ app.put("/books/:id", (req, res) => {
   });
 });
 
-app.listen(3307, () => {
-  console.log("connected to back");
+// app.listen(3307, () => {
+//   console.log("connected to back");
+// });
+
+const PORT = process.env.PORT || 39924;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
