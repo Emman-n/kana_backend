@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Access configuration variables
+ 
 console.log('Database Host:', config.database.host);
 console.log('PORt:', config.database.port);
  
