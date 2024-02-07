@@ -19,24 +19,24 @@ app.listen(3307, () => {
 
 
  
-const db = mysql.createConnection({
-  host: '34.122.62.247',
-  user: 'root',
-  password: 'root',
-  database: 'hiradata',
-  authPlugins: {
-    mysql_clear_password: () => () => Buffer.from('root')
-  }
-});
+// const db = mysql.createConnection({
+//   host: '34.122.62.247',
+//   user: 'root',
+//   password: 'root',
+//   database: 'hiradata',
+//   authPlugins: {
+//     mysql_clear_password: () => () => Buffer.from('root')
+//   }
+// });
 
 
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err.message);
-    return;
-  }
-  console.log('Connected to MySQL');
-});
+// db.connect((err) => {
+//   if (err) {
+//     console.error('Error connecting to MySQL:', err.message);
+//     return;
+//   }
+//   console.log('Connected to MySQL');
+// });
 
 
 // app.get("/", (req, res) => {
