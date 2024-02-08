@@ -54,14 +54,14 @@ db.connect((err) => {
 
 
 
-app.get("/", (req, res) => {
-  const sql= "SELECT * FROM hira";
+// app.get("/", (req, res) => {
+//   const sql= "SELECT * FROM hira";
 
-  db.query(sql,(err,result)=>{
-    if (err) return res.json({Message:"fuuuuck"})
-    return res.json(result);
-  })
- });
+//   db.query(sql,(err,result)=>{
+//     if (err) return res.json({Message:"fuuuuck"})
+//     return res.json(result);
+//   })
+//  });
 
  
 
