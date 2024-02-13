@@ -65,9 +65,9 @@ db.connect((err) => {
 
  
 
-app.get("/", (req, res) => {
-  res.json("hello this is the backend :O");
-});
+// app.get("/", (req, res) => {
+//   res.json("hello this is the backend :O");
+// });
 
 
 
