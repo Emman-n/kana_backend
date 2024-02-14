@@ -76,7 +76,7 @@ app.get("/", (req, res) => {
 function findResponseHira(req, res) {
   const hiraId = req.params.id; // Extract the parameter from the request
 
-  const sql = `SELECT * FROM hiradata.hira WHERE id = 1`;
+  const sql = `SELECT * FROM hiradata.hira WHERE id = ?`;
   db.query(sql, [hiraId], (err, data) => {
     if (err) {
       return res.json(err);
