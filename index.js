@@ -4,10 +4,9 @@ import mysql from 'mysql2';
 
 
 
-
-const app = express();
 // const { host, username, password, databaseName } = config.database;
 
+const app = express();
 app.use(express.json());
 app.use(cors());
 
@@ -68,8 +67,6 @@ db.connect((err) => {
 app.get("/", (req, res) => {
   res.json("hello this is the backend :O");
 });
-
-
 
 
 //--------------------------------------
@@ -134,8 +131,19 @@ app.get("/kata", (req, res) => {
 
 //---------------------------------
 
-app.get("results/:id", (req, res) => {
-  const sql = `SELECT * FROM hira where id= ? `;
+app.get("/vocab", (req, res) => {
+  const q = `SELECT * FROM vocab `;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+
+//---------------------------------
+
+app.get("vocab/:id", (req, res) => {
+  const sql = `SELECT * FROM hiradata.vocab where idvocab= ? `;
   const id = req.params.id;
   db.query(sql,[id], (err, data) => {
     if (err) return res.json(err);
