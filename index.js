@@ -141,16 +141,28 @@ app.get("/vocab", (req, res) => {
 
 
 //---------------------------------
+ 
 
-app.get("vocab/:id", (req, res) => {
-  const sql = `SELECT * FROM hiradata.vocab where idvocab= ? `;
-  const id = req.params.id;
-  db.query(sql,[id], (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
+function findResponsVocabId(req, res) {
+  const vocabId = req.params.id; // Extract the parameter from the request
+
+  const sql = `SELECT * FROM vocab WHERE idvocab = ?`;
+  db.query(sql, [vocabId], (err, data) => {
+    if (err) {
+      return res.json(err);
+    }else{
+      return res.status(200).json(data);
+    }
+ 
   });
+}
+//---------------------------------------
+app.get("/vocab/:id", (req, res) => {
+  findResponsVocabId(req, res);
 });
 
+
+//----------------------------------------------
 
 
 
