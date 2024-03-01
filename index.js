@@ -161,11 +161,6 @@ app.get("/vocab/:id", (req, res) => {
 //----------------------------------------------
 
 
-
-
-
-
-
 //-------------------------------------VOCAB-QUESTIONS
 
 app.get("/vocab", (req, res) => {
@@ -192,6 +187,38 @@ function findResponsTopic2(req, res) {
 
 app.get("/questions/:id", (req, res) => {
   findResponsTopic2(req, res);
+});
+
+
+//----------------------------------------------
+
+
+//-------------------------------------VOCAB-TRANSPORT
+
+app.get("/vocab", (req, res) => {
+  const q = `SELECT * FROM hiradata.transport`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+function findResponsTopic3(req, res) {
+  const vocabId = req.params.id; // Extract the parameter from the request
+
+  const sql = `SELECT * FROM questions WHERE idtransport = ?`;
+  db.query(sql, [vocabId], (err, data) => {
+    if (err) {
+      return res.json(err);
+    }else{
+      return res.status(200).json(data);
+    }
+ 
+  });
+}
+
+app.get("/transport/:id", (req, res) => {
+  findResponsTopic3(req, res);
 });
 
 
