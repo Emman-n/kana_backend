@@ -206,7 +206,7 @@ app.get("/vocab", (req, res) => {
 function findResponsTopic3(req, res) {
   const vocabId = req.params.id; // Extract the parameter from the request
 
-  const sql = `SELECT * FROM questions WHERE idtransport = ?`;
+  const sql = `SELECT * FROM transport WHERE idtransport = ?`;
   db.query(sql, [vocabId], (err, data) => {
     if (err) {
       return res.json(err);
