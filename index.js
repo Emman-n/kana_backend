@@ -176,7 +176,7 @@ app.get("/vocab", (req, res) => {
   });
 });
 
-function findResponsVocabId(req, res) {
+function findResponsTopic2(req, res) {
   const vocabId = req.params.id; // Extract the parameter from the request
 
   const sql = `SELECT * FROM questions WHERE idquestions = ?`;
@@ -191,7 +191,7 @@ function findResponsVocabId(req, res) {
 }
 
 app.get("/questions/:id", (req, res) => {
-  findResponsVocabId(req, res);
+  findResponsTopic2(req, res);
 });
 
 
