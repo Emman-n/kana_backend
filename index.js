@@ -129,7 +129,7 @@ app.get("/kata", (req, res) => {
 });
 
 
-//---------------------------------
+//-------------------------------------VOCAB1
 
 app.get("/vocab", (req, res) => {
   const q = `SELECT * FROM vocab `;
@@ -138,10 +138,6 @@ app.get("/vocab", (req, res) => {
     return res.json(data);
   });
 });
-
-
-//---------------------------------
- 
 
 function findResponsVocabId(req, res) {
   const vocabId = req.params.id; // Extract the parameter from the request
@@ -156,13 +152,51 @@ function findResponsVocabId(req, res) {
  
   });
 }
-//---------------------------------------
+
 app.get("/vocab/:id", (req, res) => {
   findResponsVocabId(req, res);
 });
 
 
 //----------------------------------------------
+
+
+
+
+
+
+
+//-------------------------------------VOCAB-QUESTIONS
+
+app.get("/vocab", (req, res) => {
+  const q = `SELECT * FROM hiradata.questions `;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+function findResponsVocabId(req, res) {
+  const vocabId = req.params.id; // Extract the parameter from the request
+
+  const sql = `SELECT * FROM questions WHERE idquestions = ?`;
+  db.query(sql, [vocabId], (err, data) => {
+    if (err) {
+      return res.json(err);
+    }else{
+      return res.status(200).json(data);
+    }
+ 
+  });
+}
+
+app.get("/questions/:id", (req, res) => {
+  findResponsVocabId(req, res);
+});
+
+
+//----------------------------------------------
+
 
 
 
